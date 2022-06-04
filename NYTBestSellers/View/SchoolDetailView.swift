@@ -8,39 +8,23 @@
 import UIKit
 
 class SchoolDetailView: UIViewController {
+        
+    private var image: UIImageView = {
+        let image = UIImageView(frame: .zero)
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
     
-    var id: String?
-    var nameText: String?
-    var network = ViewModelController()
-    
-    private var name: UILabel = {
+    private var bookTitle: UILabel = {
         let name = UILabel(frame: .zero)
         name.translatesAutoresizingMaskIntoConstraints = false
-        name.text = ""
         name.numberOfLines = 0
         return name
     }()
     
-    private var math: UILabel = {
+    private var bookDescription: UILabel = {
         let name = UILabel(frame: .zero)
         name.translatesAutoresizingMaskIntoConstraints = false
-        name.text = "Math:      "
-        name.numberOfLines = 0
-        return name
-    }()
-    
-    private var reading: UILabel = {
-        let name = UILabel(frame: .zero)
-        name.translatesAutoresizingMaskIntoConstraints = false
-        name.text = "Reading: "
-        name.numberOfLines = 0
-        return name
-    }()
-    
-    private var writing: UILabel = {
-        let name = UILabel(frame: .zero)
-        name.translatesAutoresizingMaskIntoConstraints = false
-        name.text = "Writing:  "
         name.numberOfLines = 0
         return name
     }()
@@ -52,52 +36,32 @@ class SchoolDetailView: UIViewController {
     }
     
     private func setUp() {
-        view.addSubview(name)
-        view.addSubview(math)
-        view.addSubview(reading)
-        view.addSubview(writing)
-
         
+        view.addSubview(image)
+        view.addSubview(bookTitle)
+        view.addSubview(bookDescription)
+
         let layout = view.safeAreaLayoutGuide
-
         NSLayoutConstraint.activate([
-            name.leftAnchor.constraint(equalTo: layout.leftAnchor, constant: 20),
-            name.rightAnchor.constraint(equalTo: layout.rightAnchor, constant: -20),
-            name.topAnchor.constraint(equalTo: layout.topAnchor, constant: 20),
+            image.topAnchor.constraint(equalTo: layout.topAnchor, constant: 20),
+            image.heightAnchor.constraint(equalToConstant: 200),
+            image.widthAnchor.constraint(equalToConstant: 150),
+            image.centerXAnchor.constraint(equalTo: layout.centerXAnchor),
             
-            math.leftAnchor.constraint(equalTo: layout.leftAnchor, constant: 20),
-            math.rightAnchor.constraint(equalTo: layout.rightAnchor, constant: -20),
-            math.bottomAnchor.constraint(equalTo: layout.bottomAnchor, constant: -200),
+            bookTitle.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 20),
+            bookTitle.centerXAnchor.constraint(equalTo: layout.centerXAnchor),
             
-            reading.leftAnchor.constraint(equalTo: layout.leftAnchor, constant: 20),
-            reading.rightAnchor.constraint(equalTo: layout.rightAnchor, constant: -20),
-            reading.bottomAnchor.constraint(equalTo: math.topAnchor, constant: -20),
-            
-            writing.leftAnchor.constraint(equalTo: layout.leftAnchor, constant: 20),
-            writing.rightAnchor.constraint(equalTo: layout.rightAnchor, constant: -20),
-            writing.bottomAnchor.constraint(equalTo: reading.topAnchor, constant: -20),
+            bookDescription.topAnchor.constraint(equalTo: bookTitle.bottomAnchor, constant: 20),
 
-        ])
-        
-
-        
+     ])
+       
     }
 
-    func setDetails(id: ViewModelController) {
-        self.network = id
-        name.text = network.getTitle(0)
-    }
-    
-}
-
-extension SchoolDetailView: NetworkDelegate {
-    
-    func dataFinished() {
-        
-//        reading.text = reading.text?.appending(network.getReadingScore())
-//        math.text = math.text?.appending(network.getMathScore())
-//        writing.text = writing.text?.appending(network.getWritingScore())
-        
+    func setDetails(id: ViewModelController, row: Int) {
+        bookTitle.text = id.getTitle(row)
+        bookDescription.text = id.getDescription(row)
+        guard let imageData = id.getBookImage(row) else { return }
+        image.image = UIImage(data: imageData)
     }
     
 }

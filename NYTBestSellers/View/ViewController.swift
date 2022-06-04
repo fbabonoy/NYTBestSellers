@@ -64,11 +64,8 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        guard let id = network.getID(indexPath.row) else { return }
-//        guard let schoolName = network else { return }
-
         let detailView = SchoolDetailView()
-        detailView.setDetails(id: network)
+        detailView.setDetails(id: network, row: indexPath.row)
         present(detailView, animated: true)
     }
 }
