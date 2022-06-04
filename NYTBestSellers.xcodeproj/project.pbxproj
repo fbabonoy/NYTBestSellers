@@ -15,6 +15,14 @@
 		2466880A284A5C4500F974DA /* NYTBestSellersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24668809284A5C4500F974DA /* NYTBestSellersTests.swift */; };
 		24668814284A5C4500F974DA /* NYTBestSellersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24668813284A5C4500F974DA /* NYTBestSellersUITests.swift */; };
 		24668816284A5C4500F974DA /* NYTBestSellersUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24668815284A5C4500F974DA /* NYTBestSellersUITestsLaunchTests.swift */; };
+		24668827284A616800F974DA /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24668826284A616800F974DA /* Root.swift */; };
+		24668829284A85C600F974DA /* Books.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24668828284A85C600F974DA /* Books.swift */; };
+		2466882B284A85F100F974DA /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2466882A284A85F100F974DA /* NetworkManager.swift */; };
+		2466882D284A860000F974DA /* NetworkURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2466882C284A860000F974DA /* NetworkURL.swift */; };
+		2466882F284A860F00F974DA /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2466882E284A860F00F974DA /* NetworkError.swift */; };
+		24668831284A87B700F974DA /* ViewModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24668830284A87B700F974DA /* ViewModelController.swift */; };
+		24668834284AE08500F974DA /* CellTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24668833284AE08500F974DA /* CellTableView.swift */; };
+		24668836284AE0E400F974DA /* SchoolDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24668835284AE0E400F974DA /* SchoolDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +55,14 @@
 		2466880F284A5C4500F974DA /* NYTBestSellersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NYTBestSellersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		24668813284A5C4500F974DA /* NYTBestSellersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestSellersUITests.swift; sourceTree = "<group>"; };
 		24668815284A5C4500F974DA /* NYTBestSellersUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestSellersUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		24668826284A616800F974DA /* Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
+		24668828284A85C600F974DA /* Books.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Books.swift; sourceTree = "<group>"; };
+		2466882A284A85F100F974DA /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		2466882C284A860000F974DA /* NetworkURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkURL.swift; sourceTree = "<group>"; };
+		2466882E284A860F00F974DA /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		24668830284A87B700F974DA /* ViewModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelController.swift; sourceTree = "<group>"; };
+		24668833284AE08500F974DA /* CellTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellTableView.swift; sourceTree = "<group>"; };
+		24668835284AE0E400F974DA /* SchoolDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,9 +113,12 @@
 		246687F1284A5C4200F974DA /* NYTBestSellers */ = {
 			isa = PBXGroup;
 			children = (
+				24668825284A611800F974DA /* Model */,
+				24668824284A611100F974DA /* View */,
+				24668822284A60FE00F974DA /* ViewModel */,
+				24668823284A610800F974DA /* Network */,
 				246687F2284A5C4200F974DA /* AppDelegate.swift */,
 				246687F4284A5C4200F974DA /* SceneDelegate.swift */,
-				246687F6284A5C4200F974DA /* ViewController.swift */,
 				246687FB284A5C4500F974DA /* Assets.xcassets */,
 				246687FD284A5C4500F974DA /* LaunchScreen.storyboard */,
 				24668800284A5C4500F974DA /* Info.plist */,
@@ -122,6 +141,43 @@
 				24668815284A5C4500F974DA /* NYTBestSellersUITestsLaunchTests.swift */,
 			);
 			path = NYTBestSellersUITests;
+			sourceTree = "<group>";
+		};
+		24668822284A60FE00F974DA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				24668830284A87B700F974DA /* ViewModelController.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		24668823284A610800F974DA /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				2466882A284A85F100F974DA /* NetworkManager.swift */,
+				2466882C284A860000F974DA /* NetworkURL.swift */,
+				2466882E284A860F00F974DA /* NetworkError.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		24668824284A611100F974DA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				246687F6284A5C4200F974DA /* ViewController.swift */,
+				24668833284AE08500F974DA /* CellTableView.swift */,
+				24668835284AE0E400F974DA /* SchoolDetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		24668825284A611800F974DA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				24668826284A616800F974DA /* Root.swift */,
+				24668828284A85C600F974DA /* Books.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,9 +310,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2466882B284A85F100F974DA /* NetworkManager.swift in Sources */,
+				2466882F284A860F00F974DA /* NetworkError.swift in Sources */,
+				24668831284A87B700F974DA /* ViewModelController.swift in Sources */,
+				24668834284AE08500F974DA /* CellTableView.swift in Sources */,
 				246687F7284A5C4200F974DA /* ViewController.swift in Sources */,
+				24668836284AE0E400F974DA /* SchoolDetailView.swift in Sources */,
+				2466882D284A860000F974DA /* NetworkURL.swift in Sources */,
+				24668827284A616800F974DA /* Root.swift in Sources */,
 				246687F3284A5C4200F974DA /* AppDelegate.swift in Sources */,
 				246687F5284A5C4200F974DA /* SceneDelegate.swift in Sources */,
+				24668829284A85C600F974DA /* Books.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,7 +494,6 @@
 				INFOPLIST_FILE = NYTBestSellers/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -458,7 +521,6 @@
 				INFOPLIST_FILE = NYTBestSellers/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
