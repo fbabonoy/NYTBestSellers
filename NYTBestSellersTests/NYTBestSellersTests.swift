@@ -28,15 +28,15 @@ class NYTBestSellersTests: XCTestCase {
     }
 
     func testGetDescription() {
-        XCTAssertEqual(network?.getDescription(0), "02M260")
+        XCTAssertEqual(network?.getDescription(0), "Harry Booth, a master thief, breaks things off with Miranda when a dangerous contact might harm her.")
     }
 
     func testGetCount() {
-        XCTAssertEqual(network?.getCount(), 4)
+        XCTAssertEqual(network?.getCount(), 6)
     }
 
     func testGetAmazonProductURL() {
-        XCTAssertEqual(network?.getAmazonProductURL(0), "https:\/\/www.amazon.com\/dp\/1250278198?tag=NYTBSREV-20")
+        XCTAssertEqual(network?.getAmazonProductURL(0), "https://www.amazon.com/dp/1250278198?tag=NYTBSREV-20")
     }
 
     func testGetAuthor() {
@@ -44,6 +44,6 @@ class NYTBestSellersTests: XCTestCase {
     }
 
     func testGetPublisher() {
-        XCTAssertEqual(network?.getPublisher(0), "363")
+        XCTAssertEqual(network?.getPublisher(0), "St. Martin's")
     }
 }

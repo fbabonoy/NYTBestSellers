@@ -13,7 +13,7 @@ class MockNetworkManager: BookNetworkManagerProtocol {
     func getBookList(urlString: String?, completion: @escaping ([Books]?) -> ()) {
         let bundle = Bundle(for: MockNetworkManager.self)
     
-        guard let url = bundle.url(forResource: "schools", withExtension: "json")
+        guard let url = bundle.url(forResource: "Books", withExtension: "json")
         else { return  }
         
         do {
