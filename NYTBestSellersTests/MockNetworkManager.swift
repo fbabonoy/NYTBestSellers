@@ -18,8 +18,12 @@ class MockNetworkManager: BookNetworkManagerProtocol {
         
         do {
             let data = try Data(contentsOf: url)
-            let articleList = try JSONDecoder().decode([Books].self, from: data)
-            completion(articleList)
+            let schoolList = try? JSONDecoder().decode(Root.self, from: data)
+            
+            if let response = schoolList?.results?.books {
+                completion(response)
+            }
+            
         } catch {
             print("error")
         }
