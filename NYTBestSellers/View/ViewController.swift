@@ -32,7 +32,7 @@ class ViewController: UIViewController {
     private func setUp() {
         view.addSubview(tableOfSchools)
         
-        tableOfSchools.rowHeight = 40
+        tableOfSchools.rowHeight = UITableView.automaticDimension
         
         let layout = view.safeAreaLayoutGuide
         
@@ -56,6 +56,13 @@ extension ViewController: UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellTableView.id, for: indexPath) as? CellTableView else { return CellTableView() }
         cell.titleCell.text = network.getTitle(indexPath.row)
+        
+        network.getBookImage(indexPath.row) { image in
+            DispatchQueue.main.async {
+                cell.bookImageView.image = image
+            }
+        }
+        
         return cell
     }
     
@@ -64,7 +71,7 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailView = SchoolDetailView()
+        let detailView = BooksDetailView()
         detailView.setDetails(id: network, row: indexPath.row)
         present(detailView, animated: true)
     }
@@ -74,7 +81,6 @@ extension ViewController: NetworkDelegate {
     
     func dataFinished() {
         tableOfSchools.reloadData()
-        
     }
     
 }

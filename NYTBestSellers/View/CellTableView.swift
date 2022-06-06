@@ -19,6 +19,13 @@ class CellTableView: UITableViewCell {
         return lable
     }()
     
+    var bookImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -30,14 +37,20 @@ class CellTableView: UITableViewCell {
     
     private func setUp() {
         contentView.addSubview(titleCell)
+        contentView.addSubview(bookImageView)
         
         let layout = contentView.safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
-            titleCell.leftAnchor.constraint(equalTo: layout.leftAnchor, constant: 20),
-            titleCell.rightAnchor.constraint(equalTo: layout.rightAnchor, constant: -20),
-            titleCell.topAnchor.constraint(equalTo: layout.topAnchor),
-            titleCell.bottomAnchor.constraint(equalTo: layout.bottomAnchor),
+            bookImageView.leadingAnchor.constraint(equalTo: layout.leadingAnchor, constant: 8),
+            bookImageView.topAnchor.constraint(equalTo: layout.topAnchor),
+            bookImageView.bottomAnchor.constraint(equalTo: layout.bottomAnchor),
+            bookImageView.heightAnchor.constraint(equalToConstant: 100),
+            bookImageView.widthAnchor.constraint(equalToConstant: 100),
+            titleCell.leadingAnchor.constraint(equalTo: bookImageView.trailingAnchor, constant: 20),
+            titleCell.trailingAnchor.constraint(equalTo: layout.trailingAnchor, constant: -20),
+            titleCell.centerYAnchor.constraint(equalTo: layout.centerYAnchor),
+//            titleCell.bottomAnchor.constraint(equalTo: layout.bottomAnchor),
         ])
         
     }

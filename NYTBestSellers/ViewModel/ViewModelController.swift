@@ -14,25 +14,28 @@ protocol NetworkDelegate: AnyObject {
 
 protocol  ViewModelControllerProtocal {
     func createData(urlString: String)
-    func createImageData(urlString: String?) -> Data?
     func getCount() -> Int
     func getPublisher(_ row: Int) -> String?
     func getDescription(_ row: Int) -> String?
     func getTitle(_ row: Int) -> String?
     func getAuthor(_ row: Int) -> String?
-    func getBookImage(_ row: Int) -> Data?
+    func getBookImage(_ row: Int, completion: @escaping (UIImage?) -> Void)
     func getAmazonProductURL(_ row: Int) -> String?
 }
 
 class ViewModelController: ViewModelControllerProtocal {
     
     var books = [Books]()
+    // TODO: Remove
     weak var loadData: NetworkDelegate?
     
-    private let networkManager: NetworkManagerProtocol?
+    private let bookNetworkManager: BookNetworkManagerProtocol?
+    private let imageNetworkManager: ImageNetworkManagerProtocol?
+    private var imageCache: [String: UIImage?] = [:]
     
-    init(networkManager: NetworkManagerProtocol = NetworkManager()){
-        self.networkManager = networkManager
+    init(bookNetworkManager: BookNetworkManagerProtocol = BookNetworkManager(), imageNetworkManager: ImageNetworkManagerProtocol = ImageNetworkManager()){
+        self.bookNetworkManager = bookNetworkManager
+        self.imageNetworkManager = imageNetworkManager
     }
     
     func createData(urlString: String = NetworkURL.url) {
@@ -40,7 +43,7 @@ class ViewModelController: ViewModelControllerProtocal {
     }
     
     private func createData(url: String?) {
-        networkManager?.getBookList(urlString: url) { booksData in
+        bookNetworkManager?.getBookList(urlString: url) { booksData in
             if let data = booksData {
                 self.books = data
                 DispatchQueue.main.async {
@@ -49,24 +52,7 @@ class ViewModelController: ViewModelControllerProtocal {
             }
         }
     }
-    
-    func createImageData(urlString: String?) -> Data? {
-        guard let urlU = urlString else { return nil }
-        guard let url = URL(string: urlU) else { return nil}
         
-        var data1 = Data()
-        do {
-            data1 = try Data(contentsOf: url)
-            DispatchQueue.main.async {
-                self.loadData?.dataFinished()
-            }
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        
-        return data1
-    }
-    
     func getCount() -> Int {
         books.count
     }
@@ -79,8 +65,17 @@ class ViewModelController: ViewModelControllerProtocal {
         books[row].amazonProductURL
     }
     
-    func getBookImage(_ row: Int) -> Data? {
-        createImageData(urlString: books[row].bookImage)
+    func getBookImage(_ row: Int, completion: @escaping (UIImage?) -> Void) {
+        
+        if let image =  self.imageCache[self.books[row].bookImage ?? ""] {
+            completion(image)
+            return
+        }
+        
+        imageNetworkManager?.getImage(urlString: books[row].bookImage, completion: { image in
+            self.imageCache[self.books[row].bookImage ?? ""] = image
+            completion(image)
+        })
     }
     
     func getDescription(_ row: Int) -> String? {

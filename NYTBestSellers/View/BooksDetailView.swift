@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SchoolDetailView: UIViewController {
+class BooksDetailView: UIViewController {
         
     private var image: UIImageView = {
         let image = UIImageView(frame: .zero)
@@ -26,6 +26,7 @@ class SchoolDetailView: UIViewController {
         let name = UILabel(frame: .zero)
         name.translatesAutoresizingMaskIntoConstraints = false
         name.numberOfLines = 0
+        name.textAlignment = .center
         return name
     }()
     
@@ -52,16 +53,22 @@ class SchoolDetailView: UIViewController {
             bookTitle.centerXAnchor.constraint(equalTo: layout.centerXAnchor),
             
             bookDescription.topAnchor.constraint(equalTo: bookTitle.bottomAnchor, constant: 20),
-
-     ])
+            bookDescription.leftAnchor.constraint(equalTo: layout.leftAnchor),
+            bookDescription.rightAnchor.constraint(equalTo: layout.rightAnchor),
+        ])
        
     }
 
     func setDetails(id: ViewModelController, row: Int) {
         bookTitle.text = id.getTitle(row)
         bookDescription.text = id.getDescription(row)
-        guard let imageData = id.getBookImage(row) else { return }
-        image.image = UIImage(data: imageData)
+        id.getBookImage(row) { realImage in
+            DispatchQueue.main.async {
+                self.image.image = realImage
+            }
+        }
+//        guard let imageData = id.getBookImage(row) else { return }
+//        image.image = UIImage(data: imageData)
     }
     
 }
